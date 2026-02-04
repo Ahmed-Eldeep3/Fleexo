@@ -188,6 +188,33 @@
         }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
+        /* Share Button */
+        .share-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(99, 102, 241, 0.9);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .share-btn:hover, .share-btn:active {
+            transform: scale(1.1);
+            background: var(--primary-dark);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+        }
+
         /* --- MOBILE OPTIMIZED SCROLLY CONTAINER --- */
         .main-container { 
             position: relative; 
@@ -216,6 +243,8 @@
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
             -ms-overflow-style: none;
+            scroll-behavior: smooth;
+            overscroll-behavior-x: contain;
         }
 
         .horizontal-scroll-container::-webkit-scrollbar {
@@ -227,6 +256,7 @@
             display: flex;
             flex-direction: row;
             padding: 20px 0;
+            will-change: transform;
         }
 
         .story-step { 
@@ -239,9 +269,10 @@
             justify-content: center; 
             padding: 30px 30px;
             opacity: 0.3;
-            transition: all 0.6s ease;
-            scroll-snap-align: start;
+            transition: opacity 0.4s ease;
+            scroll-snap-align: center;
             scroll-snap-stop: always;
+            will-change: opacity;
         }
 
         .story-step.active { 
@@ -295,12 +326,58 @@
             border-radius: 50%;
             background: var(--border);
             transition: all 0.3s;
+            cursor: pointer;
         }
 
         .progress-dot.active {
             background: var(--primary);
             width: 24px;
             border-radius: 4px;
+        }
+
+        .progress-dot:hover {
+            background: rgba(99, 102, 241, 0.5);
+        }
+
+        /* Swipe Indicator for first time users */
+        .swipe-hint {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(99, 102, 241, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: swipeHint 2s ease-in-out infinite;
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .swipe-hint.show {
+            opacity: 1;
+        }
+
+        @keyframes swipeHint {
+            0%, 100% { transform: translateX(-50%) translateX(0); }
+            50% { transform: translateX(-50%) translateX(10px); }
+        }
+
+        /* Loading skeleton for better perceived performance */
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
         /* --- PHONE UI --- */
@@ -313,7 +390,8 @@
             position: relative; 
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 0 2px #333; 
             overflow: hidden; 
-            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: transform;
         }
 
         .notch { 
@@ -335,6 +413,7 @@
             background: #0f172a; 
             position: relative; 
             overflow: hidden;
+            will-change: contents;
         }
         
         .app-layer { 
@@ -345,10 +424,11 @@
             height: 100%; 
             opacity: 0; 
             transform: scale(0.95); 
-            transition: all 0.5s ease-in-out; 
+            transition: opacity 0.3s ease, transform 0.3s ease; 
             pointer-events: none; 
             display: flex; 
             flex-direction: column;
+            will-change: opacity, transform;
         }
 
         .app-layer.active { 
@@ -903,6 +983,10 @@
 <body>
 
     <header>
+        <div class="share-btn" id="share-btn" title="شارك Fleexo">
+            <i class="ri-share-forward-line"></i>
+        </div>
+
         <div class="brand-badge">
             <img src="WhatsApp Image 2026-02-03 at 22.27.00 (1).png" alt="Solvexa" class="solvexa-logo" onerror="this.style.display='none'">
             <div class="powered-text">Powered by Solvexa</div>
@@ -1573,6 +1657,11 @@
             <div class="progress-dot"></div>
         </div>
 
+        <div class="swipe-hint" id="swipe-hint">
+            <span>اسحب لليمين للمتابعة</span>
+            <i class="ri-arrow-left-line"></i>
+        </div>
+
     </div>
 
     <section class="roi-section">
@@ -1659,6 +1748,31 @@
 
         ordersRange.addEventListener('input', calculateROI);
         commissionRange.addEventListener('input', calculateROI);
+
+        // --- Share Functionality ---
+        const shareBtn = document.getElementById('share-btn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', async () => {
+                const shareData = {
+                    title: 'Fleexo - منظومة اللوجستيات الذكية',
+                    text: 'اكتشف Fleexo: أول منظومة لوجستيات متكاملة في مصر! سرعة، أمان، وسيطرة كاملة على عملياتك.',
+                    url: window.location.href
+                };
+
+                try {
+                    if (navigator.share) {
+                        await navigator.share(shareData);
+                        showToast('تم المشاركة بنجاح!', 'ri-check-line', 'var(--success)');
+                    } else {
+                        // Fallback for browsers that don't support Web Share API
+                        await navigator.clipboard.writeText(window.location.href);
+                        showToast('تم نسخ الرابط!', 'ri-file-copy-line', 'var(--success)');
+                    }
+                } catch (err) {
+                    console.log('Share failed:', err);
+                }
+            });
+        }
 
         // --- App Interaction Logic ---
         const toast = document.getElementById('global-toast');
@@ -1771,20 +1885,43 @@
         const scrollContainer = document.querySelector('.horizontal-scroll-container');
         const steps = document.querySelectorAll('.story-step');
         const progressDots = document.querySelectorAll('.progress-dot');
+        const swipeHint = document.getElementById('swipe-hint');
 
         if (isMobile) {
+            // Show swipe hint for first time users
+            setTimeout(() => {
+                swipeHint.classList.add('show');
+                setTimeout(() => {
+                    swipeHint.classList.remove('show');
+                }, 3000);
+            }, 1000);
+
             // Horizontal scroll for mobile
             let currentStep = 0;
+            let isScrolling;
+            let hasUserScrolled = false;
 
             scrollContainer.addEventListener('scroll', () => {
+                // Hide swipe hint after first scroll
+                if (!hasUserScrolled) {
+                    hasUserScrolled = true;
+                    swipeHint.classList.remove('show');
+                }
+
+                // Clear timeout throughout the scroll
+                window.clearTimeout(isScrolling);
+
                 const scrollLeft = scrollContainer.scrollLeft;
                 const stepWidth = window.innerWidth;
                 const newStep = Math.round(scrollLeft / stepWidth);
 
-                if (newStep !== currentStep) {
-                    currentStep = newStep;
-                    updateActiveStep(currentStep);
-                }
+                // Set a timeout to run after scrolling ends
+                isScrolling = setTimeout(() => {
+                    if (newStep !== currentStep) {
+                        currentStep = newStep;
+                        updateActiveStep(currentStep);
+                    }
+                }, 50);
             });
 
             function updateActiveStep(index) {
@@ -1799,10 +1936,53 @@
                 activateStep(targetId);
             }
 
+            // Make progress dots clickable
+            progressDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    scrollContainer.scrollTo({
+                        left: index * window.innerWidth,
+                        behavior: 'smooth'
+                    });
+                    currentStep = index;
+                    updateActiveStep(index);
+                });
+            });
+
             // Initialize first step
             updateActiveStep(0);
 
+            // Add touch indicators for better UX
+            let touchStartX = 0;
+            let touchStartTime = 0;
+            
+            scrollContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartTime = Date.now();
+            });
+
+            scrollContainer.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndTime = Date.now();
+                const diff = touchStartX - touchEndX;
+                const timeDiff = touchEndTime - touchStartTime;
+                
+                // Fast swipe detection
+                if (Math.abs(diff) > 50 && timeDiff < 300) {
+                    const newIndex = diff > 0 ? 
+                        Math.min(currentStep + 1, steps.length - 1) : 
+                        Math.max(currentStep - 1, 0);
+                    
+                    scrollContainer.scrollTo({
+                        left: newIndex * window.innerWidth,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+
         } else {
+            // Hide swipe hint on desktop
+            if (swipeHint) swipeHint.style.display = 'none';
+
             // Vertical scroll for desktop (original behavior)
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1817,12 +1997,19 @@
             steps.forEach(step => observer.observe(step));
         }
 
-        // Handle window resize
+        // Handle window resize WITHOUT reload - just adjust layout
         let resizeTimer;
+        let lastWidth = window.innerWidth;
+        
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
-                location.reload();
+                const newWidth = window.innerWidth;
+                // Only reload if switching between mobile/desktop breakpoint
+                if ((lastWidth < 1024 && newWidth >= 1024) || (lastWidth >= 1024 && newWidth < 1024)) {
+                    location.reload();
+                }
+                lastWidth = newWidth;
             }, 250);
         });
     </script>
