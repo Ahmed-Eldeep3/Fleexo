@@ -759,6 +759,48 @@
             font-size: 0.8rem;
         }
 
+        /* Order Items */
+        .order-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px;
+            transition: all 0.3s;
+        }
+
+        .order-item:active {
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(0.98);
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 10px;
+            transition: all 0.3s;
+        }
+
+        .product-card:active {
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(0.97);
+        }
+
+        /* Cart Items */
+        .cart-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+
+        .cart-item:active {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
         /* Desktop Override */
         @media (min-width: 1024px) {
             .main-container { 
@@ -929,6 +971,254 @@
                         <div class="checkout-btn">تأكيد الطلب (150 ج.م)</div>
                     </div>
 
+                    <div class="app-layer" id="app-products">
+                        <div class="app-header">
+                            <i class="ri-arrow-right-line"></i>
+                            <span class="en-num" style="font-weight: bold;">Fleexo Eats</span>
+                            <div style="position:relative;">
+                                <i class="ri-shopping-cart-2-line"></i>
+                                <div style="position:absolute; top:-5px; right:-8px; width:16px; height:16px; background:var(--danger); border-radius:50%; font-size:0.6rem; display:flex; align-items:center; justify-content:center;">3</div>
+                            </div>
+                        </div>
+                        
+                        <div style="overflow-y:auto; height:calc(100% - 56px); padding-bottom:70px;">
+                            <!-- Search Bar -->
+                            <div style="padding:12px 16px;">
+                                <div style="background:#1e293b; border-radius:12px; padding:10px 12px; display:flex; align-items:center; gap:8px;">
+                                    <i class="ri-search-line" style="color:var(--text-muted);"></i>
+                                    <input type="text" placeholder="ابحث عن طعامك المفضل..." style="background:transparent; border:none; color:white; outline:none; width:100%; font-size:0.85rem;">
+                                </div>
+                            </div>
+
+                            <!-- Hot Offers Banner -->
+                            <div style="padding:0 16px 12px;">
+                                <div style="background:linear-gradient(135deg, #ef4444 0%, #dc2626 100%); border-radius:16px; padding:16px; display:flex; align-items:center; justify-content:space-between;">
+                                    <div>
+                                        <div style="font-size:0.7rem; color:rgba(255,255,255,0.9); margin-bottom:4px;">🔥 عروض ساخنة</div>
+                                        <div style="font-size:1.1rem; font-weight:bold;">خصم 30%</div>
+                                    </div>
+                                    <div style="background:rgba(255,255,255,0.2); padding:8px 16px; border-radius:8px; font-size:0.75rem; font-weight:bold;">اطلب الآن</div>
+                                </div>
+                            </div>
+
+                            <!-- Categories -->
+                            <div style="padding:8px 16px; display:flex; gap:8px; overflow-x:auto; scrollbar-width:none;">
+                                <div style="background:var(--primary); padding:8px 16px; border-radius:20px; white-space:nowrap; font-size:0.75rem;">🍔 الكل</div>
+                                <div style="background:rgba(255,255,255,0.05); padding:8px 16px; border-radius:20px; white-space:nowrap; font-size:0.75rem;">🍕 بيتزا</div>
+                                <div style="background:rgba(255,255,255,0.05); padding:8px 16px; border-radius:20px; white-space:nowrap; font-size:0.75rem;">🍗 دجاج</div>
+                                <div style="background:rgba(255,255,255,0.05); padding:8px 16px; border-radius:20px; white-space:nowrap; font-size:0.75rem;">🥗 صحي</div>
+                            </div>
+
+                            <!-- Products Grid -->
+                            <div style="padding:16px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <!-- Product 1 -->
+                                <div class="product-card">
+                                    <div style="position:relative; height:100px; background:#334155; border-radius:12px; margin-bottom:8px; overflow:hidden;">
+                                        <div style="position:absolute; top:6px; right:6px; background:var(--danger); padding:3px 8px; border-radius:6px; font-size:0.65rem; font-weight:bold;">-25%</div>
+                                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:2.5rem;">🍕</div>
+                                    </div>
+                                    <div style="font-size:0.8rem; font-weight:bold; margin-bottom:3px;">بيتزا مارجريتا</div>
+                                    <div style="font-size:0.65rem; color:var(--text-muted); margin-bottom:6px;">🏪 بيتزا هت</div>
+                                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                                        <span class="en-num" style="font-size:0.85rem; font-weight:bold; color:var(--success);">112 EGP</span>
+                                        <span class="en-num" style="font-size:0.7rem; text-decoration:line-through; color:var(--text-muted);">150</span>
+                                    </div>
+                                    <div style="font-size:0.65rem; color:var(--accent);">📦 توصيل: 15 ج.م</div>
+                                </div>
+
+                                <!-- Product 2 -->
+                                <div class="product-card">
+                                    <div style="position:relative; height:100px; background:#334155; border-radius:12px; margin-bottom:8px;">
+                                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:2.5rem;">🍔</div>
+                                    </div>
+                                    <div style="font-size:0.8rem; font-weight:bold; margin-bottom:3px;">برجر كلاسيك</div>
+                                    <div style="font-size:0.65rem; color:var(--text-muted); margin-bottom:6px;">🏪 ماكدونالدز</div>
+                                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                                        <span class="en-num" style="font-size:0.85rem; font-weight:bold; color:var(--success);">85 EGP</span>
+                                    </div>
+                                    <div style="font-size:0.65rem; color:var(--accent);">📦 توصيل: 10 ج.م</div>
+                                </div>
+
+                                <!-- Product 3 -->
+                                <div class="product-card">
+                                    <div style="position:relative; height:100px; background:#334155; border-radius:12px; margin-bottom:8px;">
+                                        <div style="position:absolute; top:6px; right:6px; background:#f59e0b; padding:3px 8px; border-radius:6px; font-size:0.65rem; font-weight:bold;">NEW</div>
+                                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:2.5rem;">🍣</div>
+                                    </div>
+                                    <div style="font-size:0.8rem; font-weight:bold; margin-bottom:3px;">سوشي بوكس</div>
+                                    <div style="font-size:0.65rem; color:var(--text-muted); margin-bottom:6px;">🏪 سوشي ياما</div>
+                                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                                        <span class="en-num" style="font-size:0.85rem; font-weight:bold; color:var(--success);">320 EGP</span>
+                                    </div>
+                                    <div style="font-size:0.65rem; color:var(--accent);">📦 توصيل: 20 ج.م</div>
+                                </div>
+
+                                <!-- Product 4 -->
+                                <div class="product-card">
+                                    <div style="position:relative; height:100px; background:#334155; border-radius:12px; margin-bottom:8px;">
+                                        <div style="position:absolute; top:6px; right:6px; background:var(--danger); padding:3px 8px; border-radius:6px; font-size:0.65rem; font-weight:bold;">-15%</div>
+                                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:2.5rem;">🍗</div>
+                                    </div>
+                                    <div style="font-size:0.8rem; font-weight:bold; margin-bottom:3px;">دجاج بروستد</div>
+                                    <div style="font-size:0.65rem; color:var(--text-muted); margin-bottom:6px;">🏪 كنتاكي</div>
+                                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                                        <span class="en-num" style="font-size:0.85rem; font-weight:bold; color:var(--success);">170 EGP</span>
+                                        <span class="en-num" style="font-size:0.7rem; text-decoration:line-through; color:var(--text-muted);">200</span>
+                                    </div>
+                                    <div style="font-size:0.65rem; color:var(--accent);">📦 توصيل: 12 ج.م</div>
+                                </div>
+
+                                <!-- Product 5 -->
+                                <div class="product-card">
+                                    <div style="position:relative; height:100px; background:#334155; border-radius:12px; margin-bottom:8px;">
+                                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:2.5rem;">🌮</div>
+                                    </div>
+                                    <div style="font-size:0.8rem; font-weight:bold; margin-bottom:3px;">تاكو مكس</div>
+                                    <div style="font-size:0.65rem; color:var(--text-muted); margin-bottom:6px;">🏪 تاكو بيل</div>
+                                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                                        <span class="en-num" style="font-size:0.85rem; font-weight:bold; color:var(--success);">95 EGP</span>
+                                    </div>
+                                    <div style="font-size:0.65rem; color:var(--accent);">📦 توصيل: 10 ج.م</div>
+                                </div>
+
+                                <!-- Product 6 -->
+                                <div class="product-card">
+                                    <div style="position:relative; height:100px; background:#334155; border-radius:12px; margin-bottom:8px;">
+                                        <div style="position:absolute; top:6px; right:6px; background:var(--danger); padding:3px 8px; border-radius:6px; font-size:0.65rem; font-weight:bold;">-30%</div>
+                                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:2.5rem;">🥗</div>
+                                    </div>
+                                    <div style="font-size:0.8rem; font-weight:bold; margin-bottom:3px;">سلطة سيزر</div>
+                                    <div style="font-size:0.65rem; color:var(--text-muted); margin-bottom:6px;">🏪 فريش كورنر</div>
+                                    <div style="display:flex; align-items:center; gap:6px; margin-bottom:6px;">
+                                        <span class="en-num" style="font-size:0.85rem; font-weight:bold; color:var(--success);">70 EGP</span>
+                                        <span class="en-num" style="font-size:0.7rem; text-decoration:line-through; color:var(--text-muted);">100</span>
+                                    </div>
+                                    <div style="font-size:0.65rem; color:var(--accent);">📦 توصيل: 8 ج.م</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- View Cart Button -->
+                        <div style="position:absolute; bottom:0; left:0; right:0; padding:12px 16px; background:linear-gradient(to top, #0f172a 80%, transparent); backdrop-filter:blur(10px);">
+                            <div style="background:var(--primary); padding:14px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 4px 20px rgba(99,102,241,0.4);">
+                                <span style="font-weight:bold;">🛒 عرض السلة (3 منتجات)</span>
+                                <span class="en-num" style="font-weight:bold;">367 EGP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="app-layer" id="app-cart">
+                        <div class="app-header">
+                            <i class="ri-arrow-right-line"></i>
+                            <span style="font-weight: bold;">سلة المشتريات</span>
+                            <i class="ri-delete-bin-line" style="color:var(--danger);"></i>
+                        </div>
+
+                        <div style="overflow-y:auto; height:calc(100% - 56px); padding-bottom:180px;">
+                            <div style="padding:16px;">
+                                <!-- Cart Item 1 -->
+                                <div class="cart-item">
+                                    <div style="display:flex; gap:12px; margin-bottom:10px;">
+                                        <div style="width:70px; height:70px; background:#334155; border-radius:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:2rem;">🍕</div>
+                                        <div style="flex:1;">
+                                            <div style="font-size:0.9rem; font-weight:bold; margin-bottom:3px;">بيتزا مارجريتا</div>
+                                            <div style="font-size:0.7rem; color:var(--text-muted); margin-bottom:6px;">🏪 بيتزا هت</div>
+                                            <div style="display:flex; align-items:center; gap:8px;">
+                                                <div style="display:flex; align-items:center; gap:6px; background:rgba(255,255,255,0.05); padding:4px 8px; border-radius:8px;">
+                                                    <div style="cursor:pointer; width:20px; height:20px; display:flex; align-items:center; justify-content:center; color:var(--primary);">-</div>
+                                                    <span class="en-num" style="font-size:0.85rem; min-width:20px; text-align:center;">1</span>
+                                                    <div style="cursor:pointer; width:20px; height:20px; display:flex; align-items:center; justify-content:center; color:var(--primary);">+</div>
+                                                </div>
+                                                <span class="en-num" style="font-size:0.85rem; font-weight:bold; color:var(--success);">112 EGP</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size:0.7rem; color:var(--accent); padding:8px; background:rgba(56,189,248,0.05); border-radius:8px; border:1px solid rgba(56,189,248,0.2);">
+                                        📦 توصيل: <span class="en-num">15 ج.م</span>
+                                    </div>
+                                </div>
+
+                                <!-- Cart Item 2 -->
+                                <div class="cart-item">
+                                    <div style="display:flex; gap:12px; margin-bottom:10px;">
+                                        <div style="width:70px; height:70px; background:#334155; border-radius:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:2rem;">🍗</div>
+                                        <div style="flex:1;">
+                                            <div style="font-size:0.9rem; font-weight:bold; margin-bottom:3px;">دجاج بروستد</div>
+                                            <div style="font-size:0.7rem; color:var(--text-muted); margin-bottom:6px;">🏪 كنتاكي</div>
+                                            <div style="display:flex; align-items:center; gap:8px;">
+                                                <div style="display:flex; align-items:center; gap:6px; background:rgba(255,255,255,0.05); padding:4px 8px; border-radius:8px;">
+                                                    <div style="cursor:pointer; width:20px; height:20px; display:flex; align-items:center; justify-content:center; color:var(--primary);">-</div>
+                                                    <span class="en-num" style="font-size:0.85rem; min-width:20px; text-align:center;">1</span>
+                                                    <div style="cursor:pointer; width:20px; height:20px; display:flex; align-items:center; justify-content:center; color:var(--primary);">+</div>
+                                                </div>
+                                                <span class="en-num" style="font-size:0.85rem; font-weight:bold; color:var(--success);">170 EGP</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size:0.7rem; color:var(--accent); padding:8px; background:rgba(56,189,248,0.05); border-radius:8px; border:1px solid rgba(56,189,248,0.2);">
+                                        📦 توصيل: <span class="en-num">12 ج.م</span>
+                                    </div>
+                                </div>
+
+                                <!-- Cart Item 3 -->
+                                <div class="cart-item">
+                                    <div style="display:flex; gap:12px; margin-bottom:10px;">
+                                        <div style="width:70px; height:70px; background:#334155; border-radius:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:2rem;">🍔</div>
+                                        <div style="flex:1;">
+                                            <div style="font-size:0.9rem; font-weight:bold; margin-bottom:3px;">برجر كلاسيك</div>
+                                            <div style="font-size:0.7rem; color:var(--text-muted); margin-bottom:6px;">🏪 ماكدونالدز</div>
+                                            <div style="display:flex; align-items:center; gap:8px;">
+                                                <div style="display:flex; align-items:center; gap:6px; background:rgba(255,255,255,0.05); padding:4px 8px; border-radius:8px;">
+                                                    <div style="cursor:pointer; width:20px; height:20px; display:flex; align-items:center; justify-content:center; color:var(--primary);">-</div>
+                                                    <span class="en-num" style="font-size:0.85rem; min-width:20px; text-align:center;">1</span>
+                                                    <div style="cursor:pointer; width:20px; height:20px; display:flex; align-items:center; justify-content:center; color:var(--primary);">+</div>
+                                                </div>
+                                                <span class="en-num" style="font-size:0.85rem; font-weight:bold; color:var(--success);">85 EGP</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size:0.7rem; color:var(--accent); padding:8px; background:rgba(56,189,248,0.05); border-radius:8px; border:1px solid rgba(56,189,248,0.2);">
+                                        📦 توصيل: <span class="en-num">10 ج.م</span>
+                                    </div>
+                                </div>
+
+                                <!-- Promo Code -->
+                                <div style="margin-top:20px; padding:12px; background:rgba(16,185,129,0.05); border:1px dashed var(--success); border-radius:12px;">
+                                    <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+                                        <i class="ri-coupon-3-line" style="color:var(--success);"></i>
+                                        <span style="font-size:0.85rem; font-weight:bold; color:var(--success);">كود خصم مُفعّل!</span>
+                                    </div>
+                                    <div style="font-size:0.75rem; color:var(--text-muted);">SAVE20 - وفرت <span class="en-num" style="color:var(--success);">20 ج.م</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Checkout Summary -->
+                        <div style="position:absolute; bottom:0; left:0; right:0; padding:16px; background:#0f172a; border-top:1px solid var(--border);">
+                            <div style="margin-bottom:12px;">
+                                <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted); margin-bottom:6px;">
+                                    <span>المنتجات (3)</span>
+                                    <span class="en-num">367 EGP</span>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted); margin-bottom:6px;">
+                                    <span>التوصيل</span>
+                                    <span class="en-num">37 EGP</span>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--success); margin-bottom:6px;">
+                                    <span>الخصم</span>
+                                    <span class="en-num">-20 EGP</span>
+                                </div>
+                                <div style="border-top:1px solid var(--border); margin:8px 0; padding-top:8px; display:flex; justify-content:space-between; font-weight:bold; font-size:0.95rem;">
+                                    <span>الإجمالي</span>
+                                    <span class="en-num" style="color:var(--primary);">384 EGP</span>
+                                </div>
+                            </div>
+                            <div style="background:var(--primary); padding:14px; border-radius:12px; text-align:center; font-weight:bold; box-shadow:0 4px 20px rgba(99,102,241,0.4);">
+                                تأكيد الطلب 🚀
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="app-layer" id="app-restaurant">
                         <div class="app-header" style="background: #1e1b4b;">
                             <span style="font-size:0.85rem;">مطعم البركة</span>
@@ -1031,6 +1321,170 @@
                         </div>
                     </div>
 
+                    <div class="app-layer" id="app-daily-report">
+                        <div class="app-header" style="background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <i class="ri-file-chart-line" style="font-size:1.2rem; color:var(--accent);"></i>
+                                <span style="font-weight:bold; font-size: 0.9rem;">تقرير اليوم</span>
+                            </div>
+                            <span class="en-num" style="font-size:0.7rem; color:var(--text-muted);">04 Feb 2026</span>
+                        </div>
+                        
+                        <div style="padding:16px; overflow-y:auto; height:calc(100% - 56px);">
+                            <!-- Summary Cards -->
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
+                                <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.2); padding:12px; border-radius:12px; text-align:center;">
+                                    <div class="en-num" style="font-size:1.5rem; font-weight:bold; color:var(--success);">127</div>
+                                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:3px;">طلب مكتمل</div>
+                                </div>
+                                <div style="background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.2); padding:12px; border-radius:12px; text-align:center;">
+                                    <div class="en-num" style="font-size:1.5rem; font-weight:bold; color:var(--primary);">19,050</div>
+                                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:3px;">جنيه إجمالي</div>
+                                </div>
+                            </div>
+
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                                <h4 style="font-size:0.85rem; color:var(--accent);">سجل الطلبات</h4>
+                                <span class="en-num" style="font-size:0.7rem; color:var(--text-muted);">127 طلب</span>
+                            </div>
+
+                            <!-- Orders List -->
+                            <div class="orders-list" style="display:flex; flex-direction:column; gap:10px;">
+                                <!-- Order 1 -->
+                                <div class="order-item">
+                                    <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:6px;">
+                                        <div style="display:flex; align-items:center; gap:8px;">
+                                            <div style="width:6px; height:6px; background:var(--success); border-radius:50%;"></div>
+                                            <span class="en-num" style="font-weight:bold; font-size:0.85rem;">#8821</span>
+                                        </div>
+                                        <span class="en-num" style="color:var(--success); font-weight:bold; font-size:0.85rem;">150 EGP</span>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
+                                        <span>🚴 الكابتن أحمد</span>
+                                        <span class="en-num">14:32</span>
+                                    </div>
+                                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:4px;">مطعم البركة → شارع النيل</div>
+                                </div>
+
+                                <!-- Order 2 -->
+                                <div class="order-item">
+                                    <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:6px;">
+                                        <div style="display:flex; align-items:center; gap:8px;">
+                                            <div style="width:6px; height:6px; background:var(--success); border-radius:50%;"></div>
+                                            <span class="en-num" style="font-weight:bold; font-size:0.85rem;">#8820</span>
+                                        </div>
+                                        <span class="en-num" style="color:var(--success); font-weight:bold; font-size:0.85rem;">220 EGP</span>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
+                                        <span>🚴 الكابتن محمد</span>
+                                        <span class="en-num">14:18</span>
+                                    </div>
+                                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:4px;">كنتاكي → مدينة نصر</div>
+                                </div>
+
+                                <!-- Order 3 -->
+                                <div class="order-item">
+                                    <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:6px;">
+                                        <div style="display:flex; align-items:center; gap:8px;">
+                                            <div style="width:6px; height:6px; background:var(--success); border-radius:50%;"></div>
+                                            <span class="en-num" style="font-weight:bold; font-size:0.85rem;">#8819</span>
+                                        </div>
+                                        <span class="en-num" style="color:var(--success); font-weight:bold; font-size:0.85rem;">180 EGP</span>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
+                                        <span>🚴 الكابتن أحمد</span>
+                                        <span class="en-num">13:45</span>
+                                    </div>
+                                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:4px;">ماكدونالدز → التجمع الخامس</div>
+                                </div>
+
+                                <!-- Order 4 -->
+                                <div class="order-item">
+                                    <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:6px;">
+                                        <div style="display:flex; align-items:center; gap:8px;">
+                                            <div style="width:6px; height:6px; background:var(--success); border-radius:50%;"></div>
+                                            <span class="en-num" style="font-weight:bold; font-size:0.85rem;">#8818</span>
+                                        </div>
+                                        <span class="en-num" style="color:var(--success); font-weight:bold; font-size:0.85rem;">95 EGP</span>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
+                                        <span>🚴 الكابتن يوسف</span>
+                                        <span class="en-num">13:22</span>
+                                    </div>
+                                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:4px;">بيتزا هت → الرحاب</div>
+                                </div>
+
+                                <!-- Order 5 -->
+                                <div class="order-item">
+                                    <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:6px;">
+                                        <div style="display:flex; align-items:center; gap:8px;">
+                                            <div style="width:6px; height:6px; background:var(--success); border-radius:50%;"></div>
+                                            <span class="en-num" style="font-weight:bold; font-size:0.85rem;">#8817</span>
+                                        </div>
+                                        <span class="en-num" style="color:var(--success); font-weight:bold; font-size:0.85rem;">310 EGP</span>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
+                                        <span>🚴 الكابتن محمد</span>
+                                        <span class="en-num">12:58</span>
+                                    </div>
+                                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:4px;">سوشي ياما → المعادي</div>
+                                </div>
+
+                                <!-- Order 6 -->
+                                <div class="order-item">
+                                    <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:6px;">
+                                        <div style="display:flex; align-items:center; gap:8px;">
+                                            <div style="width:6px; height:6px; background:var(--success); border-radius:50%;"></div>
+                                            <span class="en-num" style="font-weight:bold; font-size:0.85rem;">#8816</span>
+                                        </div>
+                                        <span class="en-num" style="color:var(--success); font-weight:bold; font-size:0.85rem;">140 EGP</span>
+                                    </div>
+                                    <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
+                                        <span>🚴 الكابتن أحمد</span>
+                                        <span class="en-num">12:15</span>
+                                    </div>
+                                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:4px;">مطعم الريف → الزمالك</div>
+                                </div>
+
+                                <!-- More indicator -->
+                                <div style="text-align:center; padding:10px; background:rgba(255,255,255,0.02); border-radius:8px; margin-top:5px;">
+                                    <span style="font-size:0.75rem; color:var(--text-muted);">+ 121 طلب آخر</span>
+                                </div>
+                            </div>
+
+                            <!-- Top Couriers -->
+                            <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--border);">
+                                <h4 style="font-size:0.85rem; color:var(--accent); margin-bottom:12px;">أفضل المناديب اليوم</h4>
+                                
+                                <div style="display:flex; flex-direction:column; gap:8px;">
+                                    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px; background:rgba(255,215,0,0.05); border-radius:8px; border:1px solid rgba(255,215,0,0.2);">
+                                        <div style="display:flex; align-items:center; gap:8px;">
+                                            <span style="font-size:1.2rem;">🥇</span>
+                                            <span style="font-size:0.8rem;">الكابتن أحمد</span>
+                                        </div>
+                                        <span class="en-num" style="font-size:0.8rem; font-weight:bold; color:#ffd700;">42 طلب</span>
+                                    </div>
+
+                                    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px; background:rgba(192,192,192,0.05); border-radius:8px; border:1px solid rgba(192,192,192,0.2);">
+                                        <div style="display:flex; align-items:center; gap:8px;">
+                                            <span style="font-size:1.2rem;">🥈</span>
+                                            <span style="font-size:0.8rem;">الكابتن محمد</span>
+                                        </div>
+                                        <span class="en-num" style="font-size:0.8rem; font-weight:bold; color:#c0c0c0;">38 طلب</span>
+                                    </div>
+
+                                    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px; background:rgba(205,127,50,0.05); border-radius:8px; border:1px solid rgba(205,127,50,0.2);">
+                                        <div style="display:flex; align-items:center; gap:8px;">
+                                            <span style="font-size:1.2rem;">🥉</span>
+                                            <span style="font-size:0.8rem;">الكابتن يوسف</span>
+                                        </div>
+                                        <span class="en-num" style="font-size:0.8rem; font-weight:bold; color:#cd7f32;">28 طلب</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -1043,52 +1497,73 @@
                     <p>واجهة سهلة وسريعة للعميل. بمجرد الضغط على "تأكيد الطلب"، Fleexo بيبدأ يعالج الطلب لحظياً.</p>
                 </div>
 
-                <div class="story-step" data-target="app-restaurant" data-index="1">
-                    <span class="step-label">02. الاستجابة</span>
+                <div class="story-step" data-target="app-products" data-index="1">
+                    <span class="step-label">02. العروض والخصومات</span>
+                    <h2>تجربة تسوق غنية</h2>
+                    <p>عروض ساخنة وخصومات حقيقية. كل منتج معاه سعر التوصيل واضح. بحث سهل وفئات منظمة.</p>
+                </div>
+
+                <div class="story-step" data-target="app-cart" data-index="2">
+                    <span class="step-label">03. سلة ذكية</span>
+                    <h2>طلبات من أكثر من محل</h2>
+                    <p>اجمع طلباتك من مطاعم مختلفة في سلة واحدة. كل التفاصيل واضحة: المنتج، التوصيل، والخصم.</p>
+                </div>
+
+                <div class="story-step" data-target="app-restaurant" data-index="3">
+                    <span class="step-label">04. الاستجابة</span>
                     <h2>المطعم يستقبل التنبيه</h2>
                     <p>شاشة المطعم بتنور بتنبيه صوتي ومرئي. المطعم بيراجع ويوافق بضغطة واحدة.</p>
                 </div>
 
-                <div class="story-step" data-target="app-courier-broadcast" data-index="2">
-                    <span class="step-label">03. البث (Broadcast)</span>
+                <div class="story-step" data-target="app-courier-broadcast" data-index="4">
+                    <span class="step-label">05. البث (Broadcast)</span>
                     <h2>السباق بدأ!</h2>
                     <p>الطلب بيظهر لكل المناديب في المنطقة. العدالة المطلقة: الطلب للأسرع.</p>
                 </div>
 
-                <div class="story-step" data-target="app-courier-snipe" data-index="3">
-                    <span class="step-label">04. القنص والضمان</span>
+                <div class="story-step" data-target="app-courier-snipe" data-index="5">
+                    <span class="step-label">06. القنص والضمان</span>
                     <h2>ضمان حق الشركة</h2>
                     <p>المندوب بيقنص الطلب. النظام بيخصم عمولة الشركة (الكوينز) فوراً قبل ما يستلم بيانات العميل.</p>
                 </div>
 
-                <div class="story-step" data-target="app-courier-pickup" data-index="4">
-                    <span class="step-label">05. في الطريق للمتجر</span>
+                <div class="story-step" data-target="app-courier-pickup" data-index="6">
+                    <span class="step-label">07. في الطريق للمتجر</span>
                     <h2>رحلة الاستلام</h2>
                     <p>المندوب بيتحرك فوراً للمطعم/المحل. الخريطة بتوجهه لأقصر طريق للاستلام.</p>
                 </div>
 
-                <div class="story-step" data-target="app-courier-dropoff" data-index="5">
-                    <span class="step-label">06. في الطريق للعميل</span>
+                <div class="story-step" data-target="app-courier-dropoff" data-index="7">
+                    <span class="step-label">08. في الطريق للعميل</span>
                     <h2>رحلة التسليم</h2>
                     <p>بعد الاستلام، المندوب بيتوجه لبيت العميل. العميل بيتابع تحركه لحظة بلحظة.</p>
                 </div>
 
-                <div class="story-step" data-target="app-rating" data-index="6">
-                    <span class="step-label">07. تقييم الخدمة</span>
+                <div class="story-step" data-target="app-rating" data-index="8">
+                    <span class="step-label">09. تقييم الخدمة</span>
                     <h2>الجودة أولاً</h2>
                     <p>بعد التسليم، العميل بيقيم التجربة. ده بيضمن جودة الخدمة وبيساعد في تقييم المناديب.</p>
                 </div>
 
-                <div class="story-step" data-target="app-admin" data-index="7">
-                    <span class="step-label">08. الإدارة المركزية</span>
+                <div class="story-step" data-target="app-admin" data-index="9">
+                    <span class="step-label">10. الإدارة المركزية</span>
                     <h2>ضمان الجودة والأمان</h2>
                     <p>السيستم بيحمي سمعة شركتك. لو المندوب استخدم Fake GPS عشان يقنص طلب هو مش جنبه، السيستم بيكشفه فوراً وبيمنعه.</p>
+                </div>
+
+                <div class="story-step" data-target="app-daily-report" data-index="10">
+                    <span class="step-label">11. تقرير نهاية اليوم</span>
+                    <h2>الشفافية الكاملة</h2>
+                    <p>كل يوم، تقرير تفصيلي بكل الطلبات والأرباح والمناديب. اعرف مين الأفضل ومين محتاج تحفيز.</p>
                 </div>
             </div>
         </div>
 
         <div class="progress-indicator">
             <div class="progress-dot active"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
+            <div class="progress-dot"></div>
             <div class="progress-dot"></div>
             <div class="progress-dot"></div>
             <div class="progress-dot"></div>
@@ -1211,6 +1686,17 @@
                 case 'app-customer':
                     document.getElementById('app-customer').classList.add('active');
                     break;
+
+                case 'app-products':
+                    document.getElementById('app-products').classList.add('active');
+                    showToast('عروض مميزة متاحة!', 'ri-price-tag-3-fill', 'var(--warning)');
+                    break;
+
+                case 'app-cart':
+                    document.getElementById('app-cart').classList.add('active');
+                    showToast('سلتك جاهزة للطلب', 'ri-shopping-cart-2-fill', 'var(--primary)');
+                    break;
+
                 case 'app-restaurant':
                     document.getElementById('app-restaurant').classList.add('active');
                     showToast('جرس تنبيه: طلب جديد!', 'ri-notification-badge-fill', 'var(--warning)');
@@ -1271,6 +1757,11 @@
                         if(popup) popup.style.transform = "translateY(0)";
                         showToast('تنبيه أمني: Fake GPS Detected', 'ri-shield-cross-line', 'var(--danger)');
                     }, 1500);
+                    break;
+
+                case 'app-daily-report':
+                    document.getElementById('app-daily-report').classList.add('active');
+                    showToast('تقرير اليوم جاهز!', 'ri-file-chart-fill', 'var(--accent)');
                     break;
             }
         }
